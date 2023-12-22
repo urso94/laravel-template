@@ -8,3 +8,6 @@ install: ## Install the project
 	cp -n code/.env.example code/.env || true
 	docker compose run --rm --user dev fpm composer install
 	docker compose run --rm --user dev fpm php artisan migrate
+
+pint:
+	docker compose run --rm fpm ./vendor/bin/pint

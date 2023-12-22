@@ -8,6 +8,7 @@ install: ## Install the project
 	cp -n code/.env.example code/.env || true
 	docker compose run --rm --user dev fpm composer install
 	docker compose run --rm --user dev fpm php artisan migrate
+	docker compose run --rm --user dev fpm php artisan migrate:fresh --database=tenancy --path=database/migrations/tenancy
 	docker compose run --rm --user dev fpm php artisan db:seed LocalDatabaseSeeder
 
 pint: ## Run laravel pint

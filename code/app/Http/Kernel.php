@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Tenant;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -45,6 +46,7 @@ class Kernel extends HttpKernel
         ],
 
         'tenant' => [
+            Tenant::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ]
     ];

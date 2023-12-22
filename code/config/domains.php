@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'tenancy' => env('TENANCY_DOMAIN')
+    'tenancy' => env('TENANCY_DOMAIN'),
 ];

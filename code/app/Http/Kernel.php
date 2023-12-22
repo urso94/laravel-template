@@ -48,7 +48,7 @@ class Kernel extends HttpKernel
         'tenant' => [
             Tenant::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        ]
+        ],
     ];
 
     /**

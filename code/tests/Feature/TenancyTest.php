@@ -38,6 +38,14 @@ class TenancyTest extends TestCase
         $this->assertSame('http://' . config('domains.tenancy'), route('tenancy.index'));
     }
 
+    public function test_the_tenants_index_returns_a_503_response_if_the_tenant_is_not_provided()
+    {
+        $response = $this->get(route('tenancy.index'));
+
+        $response->assertStatus(503)
+            ->assertJson(['message' => 'Tenant not provided']);
+    }
+
     /**
      * @throws ReflectionException
      */

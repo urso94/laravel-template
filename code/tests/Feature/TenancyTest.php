@@ -34,6 +34,7 @@ class TenancyTest extends TestCase
 
     public function test_the_tenancy_domain_is_configured()
     {
+        $this->assertTrue(config()->has('domains.tenancy'));
         $this->assertSame('http://' . config('domains.tenants'), route('tenants.index'));
     }
 

@@ -1,0 +1,10 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "Laravel/laravel_phpdoc_alignment": false,
+        "not_operator_with_successor_space": false,
+        "concat_space": {
+            "spacing": "one"
+        }
+    }
+}

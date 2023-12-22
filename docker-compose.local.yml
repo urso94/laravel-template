@@ -5,13 +5,15 @@ services:
       file: docker-compose.services.yml
     build:
       target: local
-#    command: php artisan serve --host 0.0.0.0
+    command: php artisan serve --host 0.0.0.0
     user: dev
-#    ports:
-#      - "${FPM_PORT:-8000}:8000"
+    ports:
+      - "${FPM_PORT:-8000}:8000"
     volumes:
       - ./code:/var/www/html
   mysql:
     extends:
       service: mysql
       file: docker-compose.services.yml
+    volumes:
+      - ./.docker/01.sql:/docker-entrypoint-initdb.d/01.sql

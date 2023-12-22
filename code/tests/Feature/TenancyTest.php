@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\Tenant;
 use App\Services\TenancyService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Session;
 use ReflectionClass;
 use ReflectionException;
@@ -13,6 +16,8 @@ use Tests\TestCase;
 
 class TenancyTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -52,6 +57,18 @@ class TenancyTest extends TestCase
 
         $response->assertStatus(503)
             ->assertJson(['message' => 'Tenant not configured']);
+    }
+
+    public function test_the_tenants_index_returns_a_successful_response(): void
+    {
+        Tenant::factory()->create(['code' => 'test']);
+        Queue::fake();
+
+        $response = $this->withHeader('x-tenant', 'test')->get(route('tenancy.index'));
+
+        $response->assertStatus(200)
+            ->assertJson(['message' => 'It works!']);
+        $this->assertTrue(App::has(TenancyService::class));
     }
 
     /**

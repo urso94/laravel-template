@@ -32,6 +32,11 @@ class TenancyTest extends TestCase
         $this->assertTrue(App::has(TenancyService::class));
     }
 
+    public function test_the_tenancy_domain_is_configured()
+    {
+        $this->assertSame('http://' . config('domains.tenants'), route('tenants.index'));
+    }
+
     /**
      * @throws ReflectionException
      */

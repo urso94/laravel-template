@@ -1,0 +1,12 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+parameters:
+    paths:
+        - app
+    level: 1
+    excludePaths:
+        - bootstrap
+        - vendor
+        - public
+        - storage

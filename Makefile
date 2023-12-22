@@ -11,3 +11,6 @@ install: ## Install the project
 
 pint:
 	docker compose run --rm fpm ./vendor/bin/pint
+
+phpstan: ## Run phpstan
+	docker-compose run --rm fpm vendor/bin/phpstan analyse --memory-limit=256M

@@ -9,7 +9,7 @@ install: ## Install the project
 	docker compose run --rm --user dev fpm composer install
 	docker compose run --rm --user dev fpm php artisan migrate
 
-pint:
+pint: ## Run laravel pint
 	docker compose run --rm fpm ./vendor/bin/pint
 
 phpstan: ## Run phpstan

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\TenancyService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,8 @@ class Tenant
         if (!\App\Models\Tenant::where('code', '=', $tenant)->first()) {
             return response()->json(['message' => 'Tenant not configured'], 503);
         }
+
+        TenancyService::init($tenant);
 
         return $next($request);
     }

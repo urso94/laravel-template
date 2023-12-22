@@ -14,3 +14,9 @@ pint: ## Run laravel pint
 
 phpstan: ## Run phpstan
 	docker-compose run --rm fpm vendor/bin/phpstan analyse --memory-limit=256M
+
+test: ## Run phpunit tests in parallel
+	docker-compose run --rm -e PHP_INI_MEMORY_LIMIT=2G fpm php artisan test --parallel --processes=4
+
+coverage: ## Run coverage
+	docker-compose run --rm -e XDEBUG_MODE=coverage fpm ./vendor/bin/phpunit --configuration ./phpunit.xml --coverage-html ./coverage

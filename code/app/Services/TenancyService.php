@@ -13,7 +13,7 @@ class TenancyService
      * Initialize the service
      *
      * @param string $tenant The tenant used to configure the service
-     * @return TenancyService
+     * @return TenancyService The tenancy service instance
      */
     public static function init(string $tenant): TenancyService
     {

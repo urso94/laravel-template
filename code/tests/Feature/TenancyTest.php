@@ -6,7 +6,6 @@ use App\Services\TenancyService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use ReflectionClass;
 use ReflectionException;
@@ -16,6 +15,7 @@ class TenancyTest extends TestCase
 {
     /**
      * A basic feature test example.
+     *
      * @throws ReflectionException
      */
     public function test_example(): void

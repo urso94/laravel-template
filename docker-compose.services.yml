@@ -1,0 +1,20 @@
+services: 
+  fpm:
+    image: 'laravel/fpm:0.1.0'
+    volumes:
+      - ./storage:/opt/storage
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: "${MYSQL_SCHEMA_NAME:-laravel}"
+      MYSQL_USER: "${MYSQL_USER:-user}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-password}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-secret}"
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"  
+    volumes:
+      - ./.data/mysql:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-p$$MYSQL_ROOT_PASSWORD" ]
+      retries: 3
+      timeout: 5s

@@ -15,3 +15,5 @@ services:
     extends:
       service: mysql
       file: docker-compose.services.yml
+    volumes:
+      - ./.docker/01.sql:/docker-entrypoint-initdb.d/01.sql

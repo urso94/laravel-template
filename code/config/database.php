@@ -56,7 +56,7 @@ return [
             'url' => env('DATABASE_TENANCY_URL', env('DATABASE_URL')),
             'host' => env('DB_TENANCY_HOST', env('DB_HOST', 'mysql')),
             'port' => env('DB_TENANCY_PORT', env('DB_PORT', '3306')),
-            'database' => env('DB_TENANCY_DATABASE', 'tenant'),
+            'database' => env('DB_TENANCY_DATABASE', 'tenant-1'),
             'username' => env('DB_TENANCY_USERNAME', env('DB_USERNAME', 'user')),
             'password' => env('DB_TENANCY_PASSWORD', env('DB_PASSWORD', 'password')),
             'unix_socket' => env('DB_TENANCY_SOCKET', env('DB_SOCKET', '')),

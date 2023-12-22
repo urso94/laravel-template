@@ -2,13 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Services\Tenancy;
 use App\Services\TenancyService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use ReflectionClass;
 use ReflectionException;
@@ -18,17 +16,19 @@ class TenancyTest extends TestCase
 {
     /**
      * A basic feature test example.
+     * @throws ReflectionException
      */
     public function test_example(): void
     {
         TenancyService::init('my-tenant');
-        $this->assertSame('my-tenant', DB::connection('tenant')->getConfig('database'));
+        $this->assertSame('my-tenant', DB::connection('tenancy')->getConfig('database'));
         $this->assertSame(
             '/opt/storage/framework/cache/data/my-tenant',
             Cache::driver('file')->getStore()->getDirectory()
         );
         $this->assertSame('my-tenant', Session::driver('file')->getName());
-        $this->assertSame('/opt/storage/framework/sessions/my-custom-tenant', $this->getSessionPath());
+        $this->assertSame('/opt/storage/framework/sessions/my-tenant', $this->getSessionPath());
+        $this->assertSame('/opt/storage/logs/my-tenant.log', config('logging.channels.single.path'));
         $this->assertTrue(App::has(TenancyService::class));
     }
 

@@ -46,6 +46,14 @@ class TenancyTest extends TestCase
             ->assertJson(['message' => 'Tenant not provided']);
     }
 
+    public function test_the_tenants_index_returns_a_503_response_if_the_tenant_is_not_configured()
+    {
+        $response = $this->withHeader('x-tenant', 'not-exists')->get(route('tenancy.index'));
+
+        $response->assertStatus(503)
+            ->assertJson(['message' => 'Tenant not configured']);
+    }
+
     /**
      * @throws ReflectionException
      */
